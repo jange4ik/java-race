@@ -2,8 +2,8 @@
 Two cars, one track, who win?
 
 You can add more cars and launch them
-**Example**
 
+**Example**
 ```java
 cars.add(new Car(100, 1.3f, "Yellow car"));
 ```
