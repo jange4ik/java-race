@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Car {
+class Car implements Comparable<Car> {
     private int maxSpeed;
     private float acceleration;
     private String carName;
@@ -49,17 +49,21 @@ class Car {
                 "acceleration: " + this.acceleration + ", " +
                 "maxSpeed:" + this.maxSpeed + "}";
     }
+
+    public int compareTo(Car otherCar) {
+        return Float.compare(this.carTime, otherCar.carTime);
+    }
 }
 
 public class Race {
 
     public static void main(String[] args) {
-        final int track = 1500;
+        final int track = 1500; // track length in m
         boolean raceNow = true;
         float timer = 0;
-        ArrayList<Car> cars = new ArrayList<Car>();
-        cars.add(new Car(20, 1.5f, "Blue Car"));
-        cars.add(new Car(50, 0.7f, "Red Car"));
+        ArrayList<Car> cars = new ArrayList<>();
+        cars.add(new Car(20, 1.5f, "Blue Car")); // here are the car specs
+        cars.add(new Car(50, 0.7f, "Red Car")); // speed & acceleration in m/s
 
         System.err.println("The race has started!");
 
@@ -78,11 +82,7 @@ public class Race {
             }
             ;
         }
-
-        if (cars.get(0).getTime() < cars.get(1).getTime()) {
-            System.out.println(cars.get(0).getName() + " is winning!");
-        } else {
-            System.out.println(cars.get(1).getName() + " is winning!");
-        }
+        Collections.sort(cars);
+        System.out.println(cars.get(0).getName() + " is winning!");
     }
 }
